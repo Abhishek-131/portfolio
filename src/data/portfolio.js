@@ -59,7 +59,7 @@ export const skills = [
     title: 'Tools',
     icon: Wrench,
     description: 'Developer workflow with version control, containers, and deployment readiness.',
-    items: ['Git/GitHub', 'Docker' , 'Postman'],
+    items: ['Git', 'GitHub', 'Docker' , 'Postman'],
   },
 ];
 

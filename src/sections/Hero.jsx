@@ -3,6 +3,10 @@ import { motion } from 'framer-motion';
 import { sectionCopy, socials } from '../data/portfolio.js';
 
 export default function Hero() {
+  const assetBase = import.meta.env.BASE_URL;
+  const profileImage = `${assetBase}Profile_P.png`;
+  const resumeUrl = `${assetBase}AbhishekResume.pdf`;
+
   return (
     <section id="hero" className="relative min-h-screen overflow-hidden px-5 pt-28 sm:px-8 lg:px-12">
       <div className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-blue-500/20 blur-3xl dark:bg-blue-500/25" />
@@ -31,7 +35,7 @@ export default function Hero() {
 
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
             <a
-              href="/AbhishekResume.pdf"
+              href={resumeUrl}
               download
               className="inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-600 px-6 py-4 text-sm font-bold text-white shadow-glow transition hover:-translate-y-1 hover:bg-blue-500"
             >
@@ -39,7 +43,7 @@ export default function Hero() {
               Download Resume
             </a>
             <a
-              href="/AbhishekResume.pdf"
+              href={resumeUrl}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-2xl border border-gray-200 bg-white px-6 py-4 text-sm font-bold text-slate-800 shadow-sm transition hover:-translate-y-1 hover:border-blue-400 hover:text-blue-600 dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:text-blue-300"
@@ -55,6 +59,7 @@ export default function Hero() {
                 key={label}
                 href={href}
                 aria-label={label}
+                target="_blank"
                 className="grid h-12 w-12 place-items-center rounded-2xl border border-gray-200 bg-white text-slate-700 shadow-sm transition hover:-translate-y-1 hover:border-blue-500 hover:text-blue-600 dark:border-white/10 dark:bg-white/10 dark:text-slate-200 dark:hover:text-blue-300"
               >
                 <Icon size={20} />
@@ -77,7 +82,7 @@ export default function Hero() {
           >
             <div className="absolute inset-5 rounded-full bg-blue-500/20 blur-2xl" />
             <img
-              src="/Profile_GPT.svg"
+              src={profileImage}
               alt="Abhishek Kumar profile"
               className="relative h-50 w-50 rounded-full border border-white/30 bg-slate-900 object-cover shadow-2xl"
             />

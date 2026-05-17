@@ -21,6 +21,7 @@ export default function Contact() {
               <a
                 key={label}
                 href={href}
+                target="_blank"
                 className="flex items-center gap-4 rounded-2xl border border-gray-200 bg-slate-50 p-4 text-sm font-semibold text-slate-700 transition hover:-translate-y-1 hover:border-blue-400 hover:text-blue-600 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:text-blue-300"
               >
                 <span className="grid h-11 w-11 place-items-center rounded-2xl bg-blue-600/10 text-blue-600 dark:text-blue-300">
@@ -36,6 +37,7 @@ export default function Contact() {
                 key={label}
                 href={href}
                 aria-label={label}
+                target="_blank"
                 className="grid h-11 w-11 place-items-center rounded-2xl border border-gray-200 bg-white text-slate-700 transition hover:-translate-y-1 hover:border-blue-500 hover:text-blue-600 dark:border-white/10 dark:bg-white/10 dark:text-slate-200 dark:hover:text-blue-300"
               >
                 <Icon size={19} />
