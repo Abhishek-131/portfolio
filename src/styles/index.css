@@ -22,6 +22,110 @@ body {
   background: rgba(59, 130, 246, 0.35);
 }
 
+.cursor-spotlight,
+.cursor-glow {
+  display: block;
+}
+
+.cursor-follower {
+  display: none;
+}
+
+.cursor-spotlight {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--cursor-x, 50%) var(--cursor-y, 50%),
+    rgba(34, 211, 238, 0.16),
+    rgba(59, 130, 246, 0.1) 10rem,
+    rgba(99, 102, 241, 0.055) 18rem,
+    transparent 32rem
+  );
+  mix-blend-mode: screen;
+  opacity: 0.82;
+  will-change: background;
+}
+
+.cursor-glow {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9997;
+  width: 210px;
+  height: 210px;
+  pointer-events: none;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.34), rgba(59, 130, 246, 0.18) 42%, rgba(99, 102, 241, 0.08) 60%, transparent 74%);
+  filter: blur(12px);
+  opacity: 0.95;
+  transform: translate3d(calc(var(--cursor-x, -240px) - 105px), calc(var(--cursor-y, -240px) - 105px), 0);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .glass-card,
+  .cert-card {
+    transition-property: transform, border-color, box-shadow, background-color, opacity, filter;
+  }
+
+  .glass-card:hover,
+  .cert-card:hover {
+    animation: premium-card-pulse 1.7s ease-in-out infinite;
+  }
+
+  a,
+  button {
+    will-change: transform;
+    transition-property: transform, color, background-color, border-color, box-shadow, opacity;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cursor-effects-ready,
+  .cursor-effects-ready * {
+    cursor: none !important;
+  }
+
+  .cursor-follower {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10000;
+    width: 18px;
+    height: 18px;
+    pointer-events: none;
+    border: 1px solid rgba(147, 197, 253, 0.85);
+    border-radius: 9999px;
+    background: radial-gradient(circle, rgba(165, 243, 252, 1), rgba(59, 130, 246, 0.5) 58%, transparent 72%);
+    box-shadow: 0 0 24px rgba(34, 211, 238, 0.75), 0 0 44px rgba(99, 102, 241, 0.42);
+    transform: translate3d(calc(var(--cursor-x, -100px) - 9px), calc(var(--cursor-y, -100px) - 9px), 0);
+    transition: width 180ms ease, height 180ms ease, border-color 180ms ease, background 180ms ease;
+    will-change: transform, width, height;
+  }
+
+  .cursor-follower-active {
+    width: 48px;
+    height: 48px;
+    border-color: rgba(34, 211, 238, 0.58);
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.24), rgba(99, 102, 241, 0.18) 58%, transparent 72%);
+    transform: translate3d(calc(var(--cursor-x, -100px) - 24px), calc(var(--cursor-y, -100px) - 24px), 0);
+  }
+}
+
+@keyframes premium-card-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(59, 130, 246, 0), 0 20px 48px rgba(15, 23, 42, 0.08);
+  }
+
+  50% {
+    box-shadow: 0 0 32px rgba(59, 130, 246, 0.18), 0 24px 56px rgba(15, 23, 42, 0.14);
+  }
+}
+
 @layer components {
   .glass-card {
     @apply border border-gray-200 bg-white shadow-xl shadow-slate-200/70 backdrop-blur-lg dark:border-white/10 dark:bg-white/5 dark:shadow-black/20;
@@ -34,4 +138,53 @@ body {
   .container-max {
     @apply mx-auto max-w-7xl;
   }
+}
+
+.cert-swiper .swiper-slide {
+  opacity: 0.72;
+  filter: saturate(0.92);
+  transform: scale(0.94);
+  transition: opacity 500ms ease, filter 500ms ease, transform 500ms ease;
+}
+
+.cert-swiper .swiper-slide-active {
+  opacity: 1;
+  filter: blur(0) saturate(1.08);
+  transform: scale(1);
+}
+
+.cert-swiper .swiper-slide-active .cert-card {
+  border-color: rgba(59, 130, 246, 0.48);
+  box-shadow: 0 0 38px rgba(59, 130, 246, 0.22), 0 24px 56px rgba(15, 23, 42, 0.16);
+}
+
+.cert-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  transform: translateX(-120%) skewX(-18deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent);
+  transition: transform 800ms ease;
+}
+
+.cert-card:hover::before {
+  transform: translateX(120%) skewX(-18deg);
+}
+
+.cert-pagination .swiper-pagination-bullet {
+  width: 0.65rem;
+  height: 0.65rem;
+  margin: 0 0.22rem !important;
+  border-radius: 9999px;
+  background: rgba(148, 163, 184, 0.55);
+  opacity: 1;
+  transition: width 300ms ease, background 300ms ease, box-shadow 300ms ease;
+}
+
+.cert-pagination .swiper-pagination-bullet-active {
+  width: 2.1rem;
+  background: linear-gradient(90deg, #3b82f6, #6366f1);
+  box-shadow: 0 0 18px rgba(59, 130, 246, 0.45);
 }

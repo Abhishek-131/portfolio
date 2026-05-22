@@ -42,6 +42,7 @@ export default function Projects() {
               <div className="mt-6 grid grid-cols-2 gap-3">
                 <a
                   href={project.code}
+                  target='_blank'
                   className="inline-flex items-center justify-center gap-2 rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm font-bold text-slate-800 transition hover:border-blue-500 hover:text-blue-600 dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:text-blue-300"
                 >
                   <Github size={17} />
@@ -49,6 +50,7 @@ export default function Projects() {
                 </a>
                 <a
                   href={project.demo}
+                  target='_blank'
                   className="inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-blue-500"
                 >
                   <ExternalLink size={17} />
