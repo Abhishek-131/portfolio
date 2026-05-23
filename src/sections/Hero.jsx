@@ -7,6 +7,21 @@ export default function Hero() {
   const profileImage = `${assetBase}Profile_P.png`;
   const resumeUrl = `${assetBase}AbhishekResume.pdf`;
 
+  const handleDownloadResume = (e) => {
+    e.preventDefault();
+    const link = document.createElement('a');
+    link.href = resumeUrl;
+    link.download = 'AbhishekResume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleViewResume = (e) => {
+    e.preventDefault();
+    window.open(resumeUrl, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <section id="hero" className="relative min-h-screen overflow-hidden px-5 pt-28 sm:px-8 lg:px-12">
       <div className="absolute left-1/2 top-24 h-72 w-72 -translate-x-1/2 rounded-full bg-blue-500/20 blur-3xl dark:bg-blue-500/25" />
@@ -34,23 +49,20 @@ export default function Hero() {
           </p>
 
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-            <a
-              href={resumeUrl}
-              download
-              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-600 px-6 py-4 text-sm font-bold text-white shadow-glow transition hover:-translate-y-1 hover:bg-blue-500"
+            <button
+              onClick={handleDownloadResume}
+              className="inline-flex items-center justify-center gap-2 rounded-2xl bg-blue-600 px-6 py-4 text-sm font-bold text-white shadow-glow transition hover:-translate-y-1 hover:bg-blue-500 cursor-pointer"
             >
               <Download size={19} />
               Download Resume
-            </a>
-            <a
-              href={resumeUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-gray-200 bg-white px-6 py-4 text-sm font-bold text-slate-800 shadow-sm transition hover:-translate-y-1 hover:border-blue-400 hover:text-blue-600 dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:text-blue-300"
+            </button>
+            <button
+              onClick={handleViewResume}
+              className="inline-flex items-center justify-center gap-2 rounded-2xl border border-gray-200 bg-white px-6 py-4 text-sm font-bold text-slate-800 shadow-sm transition hover:-translate-y-1 hover:border-blue-400 hover:text-blue-600 dark:border-white/10 dark:bg-white/10 dark:text-white dark:hover:text-blue-300 cursor-pointer"
             >
               <Eye size={19} />
               View Resume
-            </a>
+            </button>
           </div>
 
           <div className="mt-8 flex gap-3">
